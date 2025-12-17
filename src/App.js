@@ -1,21 +1,16 @@
 
-import Firstpage from "./pages/Firstpage";
-import Secondpage from "./pages/Secondpage";
-import {Route,Routes,HashRouter as Router} from 'react-router-dom'
-import { AppContext } from "./ContextAPI";
+import { useEffect } from "react";
+import { useAPIcontext } from "./ContextAPI";
 function App() {
-
+    let {setData}=useAPIcontext();
+// get data
+ useEffect(()=>{
+let Data= JSON.parse(localStorage.getItem('data'));
+if(Data!=null)
+    setData(Data);
+  },[])
   return (
   <>
-<AppContext>
-  <Router>
-    <Routes>
-      <Route path="/" element={<Firstpage/>}/>
-      <Route path="/page2"element={<Secondpage/>}/>
-    </Routes>
-  </Router>
-</AppContext>
-
   </>
   );
 }
